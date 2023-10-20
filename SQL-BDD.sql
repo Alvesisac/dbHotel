@@ -10,6 +10,15 @@ create database dbHotel;
 /*seleciona o banco*/
 use dbHotel;
 
+/* Excluir um campo da tabela */
+alter table funcionarios drop column email;
+
+/* Resposicionar o campo email para que ele fique após o campo login */
+alter table funcionarios modify column email varchar(50) not null after login;
+
+/* Adicionar o campo email à tabela funcionarios */
+alter table funcionarios add column email varchar(50) not null;
+
 /*Criar uma nova tabela*/
 
 create table funcionarios (
@@ -59,6 +68,14 @@ select * from funcionarios;
 
 update funcionarios set cargo = "Gerência" where idFunc = 5;
 
+update funcionarios set email = "Pamellapereto12@gmail.com" where idFunc = 7;
 
+update funcionarios set email = "BrenoSilva13@gmail.com" where idFunc = 4;
+
+update funcionarios set email = "VictoriaCardoso14@gmail.com" where idFunc = 5;
+
+update funcionarios set email = "LauraLopes15@gmail.com" where idFunc = 6;
+
+update funcionarios set email = "FelipeCoelho16@gmail.com" where idFunc = 8;
 
 
