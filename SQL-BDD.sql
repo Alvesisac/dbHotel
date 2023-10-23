@@ -117,3 +117,59 @@ create table quartos (
 describe quartos;
 
 alter table quartos add column numeroQuarto varchar(10) not null after andar;
+
+/* ADICIONAR COMANDOS ABAIXO */
+alter table quartos add column cafeDaManha char(3) not null after preco;
+alter table quartos add column foto varchar (255) not null after descricao;
+
+
+alter table quartos add column numeroQuarto varchar(10) not null after andar;
+
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, preco, tipoCama, varanda, cafeDaManha, foto) values ("8º", "505", "Superior Premier", 3, "não",
+ "familiar", "O quarto de 32m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 42'', wi-fi grátis, cofre digital,
+ frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", 1596.00, "Queen Size", "sim", "sim", "");
+ 
+ insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, preco, tipoCama, varanda, cafeDaManha, foto) values ("8º", "505", "Superior Premier", 3, "sim",
+ "familiar", "O quarto de 32m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 42'', wi-fi grátis, cofre digital,
+ frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", 200.00, "Queen Size", "nao", "nao", "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/10/18/1313/Grand-Hyatt-Sao-Paulo-P804-Grand-Twin-Panoramic-View.jpg/Grand-Hyatt-Sao-Paulo-P804-Grand-Twin-Panoramic-View.16x9.jpg");
+ 
+ update quartos set cafeDaManha = "sim" where idQuarto = 1;
+ update quartos set foto = "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/10/18/1313/Grand-Hyatt-Sao-Paulo-P804-Grand-Twin-Panoramic-View.jpg/Grand-Hyatt-Sao-Paulo-P804-Grand-Twin-Panoramic-View.16x9.jpg" where idQuarto = 5;
+ 
+ select * from quartos;
+ 
+Delete from quartos where idQuarto = 12;
+
+select * from quartos where situacao = "sim";
+select * from quartos where situacao = "nao" order by preco asc;
+
+select * from quartos where cafeDaManha = "nao";
+select * from quartos where varanda = "nao";
+select * from quartos where preco < 700.00 ;
+select * from quartos where cafeDaManha ="sim" and varanda = "sim" ;
+
+update quartos set andar = "12º" where idQuarto = 13;
+ 
+ 
+ create table clientes (
+	idCliente int primary key auto_increment,
+    nomeCompleto varchar(100) not null,
+    cpf char(12) not null unique,
+    rg char(12) not null unique,
+    email varchar(50) unique,
+    celular varchar(20) not null,
+    numeroCartao varchar(20) not null,
+    nomeTitular varchar(100) not null,
+    validade date
+    cvv char(3) not null,
+    checkin datetime not null,
+    checkout datetime not null,
+    idQuarto
+    
+    
+    );
+    
+    describe clientes; 
+    
+    insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout, idQuarto) values (
+ 
