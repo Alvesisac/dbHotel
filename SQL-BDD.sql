@@ -171,5 +171,5 @@ update quartos set andar = "12º" where idQuarto = 13;
     
     describe clientes; 
     
-    insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout, idQuarto) values (
+    insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout, idQuarto) values ( Isac Alves dos Santos
  
