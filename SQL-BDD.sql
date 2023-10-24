@@ -134,7 +134,9 @@ insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nom
  frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", 200.00, "Queen Size", "nao", "nao", "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/10/18/1313/Grand-Hyatt-Sao-Paulo-P804-Grand-Twin-Panoramic-View.jpg/Grand-Hyatt-Sao-Paulo-P804-Grand-Twin-Panoramic-View.16x9.jpg");
  
  update quartos set cafeDaManha = "sim" where idQuarto = 1;
- update quartos set foto = "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/10/18/1313/Grand-Hyatt-Sao-Paulo-P804-Grand-Twin-Panoramic-View.jpg/Grand-Hyatt-Sao-Paulo-P804-Grand-Twin-Panoramic-View.16x9.jpg" where idQuarto = 5;
+ update quartos set foto = "https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/10/18/1313/Grand-Hyatt-Sao-Paulo-P804-Grand-Twin-Panoramic-View.jpg/Grand-Hyatt-Sao-Paulo-P804-Grand-Twin-Panoramic-View.16x9.jpg" where idQuarto = 1;
+
+ update quartos set numeroQuarto = "506" where idQuarto = 2;
  
  select * from quartos;
  
@@ -154,22 +156,41 @@ update quartos set andar = "12º" where idQuarto = 13;
  create table clientes (
 	idCliente int primary key auto_increment,
     nomeCompleto varchar(100) not null,
-    cpf char(12) not null unique,
+    cpf char(14) not null unique,
     rg char(12) not null unique,
     email varchar(50) unique,
     celular varchar(20) not null,
     numeroCartao varchar(20) not null,
     nomeTitular varchar(100) not null,
-    validade date
+    validade date,
     cvv char(3) not null,
     checkin datetime not null,
     checkout datetime not null,
-    idQuarto
+    idQuarto int not null,
+    foreign key (idQuarto) references quartos (idQuarto)
     
     
     );
     
     describe clientes; 
+
     
-    insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout, idQuarto) values ( Isac Alves dos Santos
- 
+    drop table clientes;
+    
+    insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout, idQuarto) values 
+    ( "Isac Alves dos Santos", "649.277.990-85","21.653.913-4", "isacsanttos12sp@gmail.com", "(11) 2465-8465", "4121224729577660"
+    , "Diamond Ricard", "2028-09-02", "592", "2023-11-08 22:00:00", "2023-12-10 22:00:00", 1);
+    
+     insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout, idQuarto) values
+     ( "Thiago rivas ", "549.013.290-65","34.875.911-3", "thiagorivas12@gmail.com", "(11) 2465-8465", "4121225960524725", "Diamond Ricard",
+     "2024-10-02", "742", "2023-11-07 22:00:00", "2023-12-09 22:00:00", 2);
+     
+ select *  from clientes;
+
+select clientes.nomeCompleto,
+clientes.celular
+from quartos inner join clientes 
+on quartos.idQuarto = clientes.idQuarto where numeroQuarto = 505;
+
+update clientes set nomeTitular = "Rorgers" where idCliente = 2;
+
