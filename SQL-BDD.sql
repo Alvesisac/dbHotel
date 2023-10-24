@@ -187,10 +187,25 @@ update quartos set andar = "12º" where idQuarto = 13;
      
  select *  from clientes;
 
+/*Buscar o nome completo e o celular do cliente que alugou o quarto de número 505, pois a tabela quartos está vinculada à tabela clientes pelo campo idQuarto */
 select clientes.nomeCompleto,
 clientes.celular
 from quartos inner join clientes 
 on quartos.idQuarto = clientes.idQuarto where numeroQuarto = 505;
 
+/* Buscar TODAS AS INFORMAÇÕES da tabela quartos que está vinculada à tabela clientes pelo campo idQuarto */
+select * from quartos inner join clientes
+on quartos.idQuarto = clientes.idQuarto;
+
 update clientes set nomeTitular = "Rorgers" where idCliente = 2;
+
+
+select clientes.nomeCompleto, clientes.checkout, clientes.checkin from quartos inner join clientes on quartos.idQuarto = clientes.idQuarto where numeroQuarto = 505;
+select clientes.nomeCompleto, clientes.checkout, clientes.checkin from quartos inner join clientes on quartos.idQuarto = clientes.idQuarto where numeroQuarto = 506;
+
+select clientes.nomeCompleto as Nome, date_format(clientes.checkout, '%d/%m/%Y - %H:%i') as checkout from quartos inner join clientes
+on quartos.idQuarto = clientes.idQuarto where numeroQuarto = 505;
+
+select clientes.nomeCompleto as Nome, date_format(clientes.checkout, '%d/%m/%Y - %H:%i') as checkout from quartos inner join clientes
+on quartos.idQuarto = clientes.idQuarto where numeroQuarto = 506;
 
