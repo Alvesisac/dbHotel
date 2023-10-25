@@ -153,6 +153,44 @@ select * from quartos where cafeDaManha ="sim" and varanda = "sim" ;
 update quartos set andar = "12º" where idQuarto = 13;
  
  
+ /*Tabela Pedido*/
+ /*dataPedido timestamp default current_timestamp significa que a data do pedido será a mesma do sistema, ou seja, a data atual
+ statusPedido significa que a situação do pedido será entre as seguintes opções: Pedentes, Finalizado, Cancelado */
+ 
+ create table pedido (
+	idPedido int primary key auto_increment,
+    dataPedido timestamp default current_timestamp,
+    statusPedido enum("Pendente", "Finalizado", "Cancelado") not null,
+    idCliente int not null,
+    foreign key(idCliente) references clientes(idCLiente)
+ );
+ 
+ 
+
+alter table pedido modify column statusPedido enum("Pendente", "Finalizado", "Cancelado") not null;
+
+ insert into pedido (statusPedido, idCliente) values ("Pendente", 1);
+ insert into pedido (statusPedido, idCliente) values ("Finalizado", 2); 
+ 
+
+ select * from pedido;
+ 
+ /*Tabela Reservas*/
+ 
+ create table reservas (
+	idReserva int primary key auto_increment,
+    idPedido int not null,
+    idQuarto int not null,
+    foreign key (idPedido) references pedido(idPedido),
+	foreign key (idQuarto) references quartos(idQuarto)
+);
+ 
+
+ 
+ describe pedido;
+ 
+ 
+ /*Tabela Clientes*/
  create table clientes (
 	idCliente int primary key auto_increment,
     nomeCompleto varchar(100) not null,
@@ -165,25 +203,21 @@ update quartos set andar = "12º" where idQuarto = 13;
     validade date,
     cvv char(3) not null,
     checkin datetime not null,
-    checkout datetime not null,
-    idQuarto int not null,
-    foreign key (idQuarto) references quartos (idQuarto)
-    
-    
-    );
+    checkout datetime not null
+);
     
     describe clientes; 
 
-    
+
     drop table clientes;
     
-    insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout, idQuarto) values 
+    insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout) values 
     ( "Isac Alves dos Santos", "649.277.990-85","21.653.913-4", "isacsanttos12sp@gmail.com", "(11) 2465-8465", "4121224729577660"
-    , "Diamond Ricard", "2028-09-02", "592", "2023-11-08 22:00:00", "2023-12-10 22:00:00", 1);
+    , "Diamond Ricard", "2028-09-02", "592", "2023-11-08 22:00:00", "2023-12-10 22:00:00");
     
-     insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout, idQuarto) values
+     insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout) values
      ( "Thiago rivas ", "549.013.290-65","34.875.911-3", "thiagorivas12@gmail.com", "(11) 2465-8465", "4121225960524725", "Diamond Ricard",
-     "2024-10-02", "742", "2023-11-07 22:00:00", "2023-12-09 22:00:00", 2);
+     "2024-10-02", "742", "2023-11-07 22:00:00", "2023-12-09 22:00:00");
      
  select *  from clientes;
 
