@@ -172,8 +172,17 @@ alter table pedido modify column statusPedido enum("Pendente", "Finalizado", "Ca
  insert into pedido (statusPedido, idCliente) values ("Pendente", 1);
  insert into pedido (statusPedido, idCliente) values ("Finalizado", 2); 
  
+ 
+ alter table reservas add column checkin datetime not null;
+ alter table reservas add column checkout datetime not null;
+ 
+ 
+ 
 
  select * from pedido;
+ 
+ select * from pedido inner join clientes on pedido.idCliente = clientes.idCliente;
+ 
  
  /*Tabela Reservas*/
  
@@ -185,12 +194,18 @@ alter table pedido modify column statusPedido enum("Pendente", "Finalizado", "Ca
 	foreign key (idQuarto) references quartos(idQuarto)
 );
  
+ describe reservas;
+ 
+ select * from reservas;
+ 
+ insert into reservas (idPedido, idQuarto, checkin, checkout) values(1, 1, "2023-11-08 22:00:00", "2023-12-10 22:00:00");
+ insert into reservas (idPedido, idQuarto, checkin, checkout) values(1, 2, "2023-11-07 22:00:00", "2023-12-09 22:00:00");
 
- 
- describe pedido;
- 
+ select * from reservas;
+ select * from reservas inner join
  
  /*Tabela Clientes*/
+ 
  create table clientes (
 	idCliente int primary key auto_increment,
     nomeCompleto varchar(100) not null,
@@ -211,13 +226,11 @@ alter table pedido modify column statusPedido enum("Pendente", "Finalizado", "Ca
 
     drop table clientes;
     
-    insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout) values 
-    ( "Isac Alves dos Santos", "649.277.990-85","21.653.913-4", "isacsanttos12sp@gmail.com", "(11) 2465-8465", "4121224729577660"
-    , "Diamond Ricard", "2028-09-02", "592", "2023-11-08 22:00:00", "2023-12-10 22:00:00");
+    insert into clientes (nomeCompleto, cpf, rg, email, celular,) values 
+    ( "Isac Alves dos Santos", "649.277.990-85","21.653.913-4", "isacsanttos12sp@gmail.com", "(11) 2465-8465");
     
-     insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout) values
-     ( "Thiago rivas ", "549.013.290-65","34.875.911-3", "thiagorivas12@gmail.com", "(11) 2465-8465", "4121225960524725", "Diamond Ricard",
-     "2024-10-02", "742", "2023-11-07 22:00:00", "2023-12-09 22:00:00");
+     insert into clientes (nomeCompleto, cpf, rg, email, celular,) values
+     ( "Thiago rivas ", "549.013.290-65","34.875.911-3", "thiagorivas12@gmail.com", "(11) 2465-8465");
      
  select *  from clientes;
 
