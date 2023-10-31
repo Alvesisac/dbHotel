@@ -165,7 +165,6 @@ update quartos set andar = "12º" where idQuarto = 13;
     foreign key(idCliente) references clientes(idCLiente)
  );
  
- 
 
 alter table pedido modify column statusPedido enum("Pendente", "Finalizado", "Cancelado") not null;
 
@@ -223,14 +222,9 @@ alter table pedido modify column statusPedido enum("Pendente", "Finalizado", "Ca
     
     describe clientes; 
 
-
-    drop table clientes;
     
-    insert into clientes (nomeCompleto, cpf, rg, email, celular,) values 
-    ( "Isac Alves dos Santos", "649.277.990-85","21.653.913-4", "isacsanttos12sp@gmail.com", "(11) 2465-8465");
-    
-     insert into clientes (nomeCompleto, cpf, rg, email, celular,) values
-     ( "Thiago rivas ", "549.013.290-65","34.875.911-3", "thiagorivas12@gmail.com", "(11) 2465-8465");
+    insert into clientes (nomeCompleto, cpf, rg, email, celular,) values ( "Isac Alves dos Santos", "649.277.990-85","21.653.913-4", "isacsanttos12sp@gmail.com", "(11) 2465-8465");
+    insert into clientes (nomeCompleto, cpf, rg, email, celular,) values ( "Thiago rivas ", "549.013.290-65","34.875.911-3", "thiagorivas12@gmail.com", "(11) 2465-8465");
      
  select *  from clientes;
 
@@ -255,4 +249,8 @@ on quartos.idQuarto = clientes.idQuarto where numeroQuarto = 505;
 
 select clientes.nomeCompleto as Nome, date_format(clientes.checkout, '%d/%m/%Y - %H:%i') as checkout from quartos inner join clientes
 on quartos.idQuarto = clientes.idQuarto where numeroQuarto = 506;
+
+
+
+
 
