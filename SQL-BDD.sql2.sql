@@ -20,6 +20,8 @@ cidade varchar(40),
 estado char(2)
 );
 
+describe fornecedores;
+
 insert into fornecedores (nomeFornecedor, cnpjFornecedor, telefoneFornecedor, emailFornecedor, cep, enderecoFornecedor, numeroEndereco, bairro, cidade, estado) values
 ("Carlos jr", "83.556.227/0001-45", "(12) 3211-8135", "carlos6@gmail.com", "02913-020", "Travessa Reverendo Paulo Hasse-Professor", "557", "Vila Ursulina", "São Paulo", "SP" );
 
@@ -79,6 +81,8 @@ idCliente int not null,
 foreign key (idCliente) references clientes (idCliente)
 );
 
+describe pedidos;
+
 insert into pedidos (statusPedido, idCliente) values ("Finalizado", 1);
 
 select * from pedidos;
@@ -103,3 +107,13 @@ select itensPedidos.iditensPedido, pedidos.idPedido,
 produtos.idProduto, produtos.nomeProduto, produtos.precoProduto, produtos.categoriaProduto
 from (itensPedidos inner join pedidos on itensPedidos.idPedido = pedidos.idPedido) 
 inner join produtos on itensPedidos.idProduto = produtos.idProduto;
+
+
+/* OBJETIVO: consultar o nome do cliente que abriu seu pedido em determinada data para verificar o que ele comprou de itens nesse pedido e a respectiva quantidade,
+ou seja, quais produtos e quanto de cada um 
+QUEM COMPROU? QUANDO COMPROU? O QUE COMPROU? QUANTO COMPROU? */
+
+select clientes.nomeCliente, pedidos.idPedido, pedidos.dataPedido, itensPedidos.quantidade, produtos.nomeProduto, produtos.precoProduto
+from clientes inner join pedidos on clientes.idCliente = pedidos.idCliente inner join
+itensPedidos on pedidos.idPedido = itensPedidos.idPedido inner join
+produtos on produtos.idProduto = itensPedidos.idProduto;
