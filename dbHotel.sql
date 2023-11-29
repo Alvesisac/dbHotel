@@ -269,7 +269,7 @@ select clientes.nomeCompleto, clientes.cpf, clientes.email, pedido.idPedido, ped
  inner join reservas on reservas.idPedido = pedido.idPedido inner join quartos on reservas.idQuarto = quartos.idQuarto;
 
 
-/* OBJETIVO: somar o total que o cliente que o cliente deverá pagar dos quartos */
+/* somar o total que o cliente que o cliente deverá pagar dos quartos */
 
 select sum(quartos.preco) as Total from reservas inner join quartos on reservas.idQuarto = quartos.idQuarto where idPedido = 2;
 
